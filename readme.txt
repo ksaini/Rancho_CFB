@@ -24,10 +24,10 @@ these lists.
 
 
 == Usage ==
-* MAke sure files are writable before instrumenting them.
+* Make sure files are writable before instrumenting them.
 * Use of code formatter is recommended before instrumenting.
 * In CFB Navigator go the folder needs to be instrumented.
-* Do a right click and on the menue go to Rancho --> Instrument. A new window/page is open(It will take some time. ALso if you are doing it for the sccond time you amy need to regresh the page)
+* Do a right click and on the menue go to Rancho --> Instrument. A new window/page is opened (It will take some time. Also, if you are doing it for the second time, you may need to refresh the page)
 * Now run your testcases.
 * Once done again go to folder and go to Rancho --> Code Coverage.
 * Report will be generated in Server View. Click on the individual file link to se the line coverage
