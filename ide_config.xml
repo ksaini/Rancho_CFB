@@ -1,0 +1,22 @@
+<application>
+	<name>Rancho</name>
+	
+	<menucontributions>
+		<contribution target ="projectview">
+			<menu name="Rancho" >
+				<action name= "Instrument" handlerid= "instrument" showresponse="true" >
+					
+				</action>
+				<action name= "Code Coverage" handlerid= "codecoveragehndlr" showresponse="true" >
+					
+				</action>
+			</menu>
+		</contribution>
+		
+	</menucontributions>
+	
+	<handlers>
+		<handler id="instrument" type="CFM" filename="instrument.cfm" />
+		<handler id="codecoveragehndlr" type="CFM" filename="codecoveragehndlr.cfm" />
+	</handlers>
+</application>

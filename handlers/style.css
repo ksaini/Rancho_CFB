@@ -1,0 +1,66 @@
+TABLE {
+    FONT-SIZE: 12px
+}
+.comment {
+    color:#666; font-style:italic;
+    
+}
+.srcLine {
+    display: inline;
+    white-space: pre;
+    padding-left: 0px;
+    font-size:12px;
+}
+TABLE.srcView {
+    FONT-SIZE: 12px;
+    BORDER-LEFT: #dcdcdc 1px solid;
+    BORDER-RIGHT: #dcdcdc 1px solid;
+    BORDER-BOTTOM: #dcdcdc 1px solid;
+    BORDER-TOP: #dcdcdc 1px solid;
+}
+.srcCell {
+    padding-right: 10px;
+    padding-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: Monospace;
+}
+.spacer {
+    padding-left: 10px;
+    background-image: url( "img/spacer.gif" );
+}
+.lineNumHref {
+    color: gray;
+}
+TD.lineCount {
+    BORDER-RIGHT: #dcdcdc 1px solid;
+    PADDING-RIGHT: 3px;
+}
+
+.Good {
+    BACKGROUND: #78ff55;
+}
+
+.NoHilight {
+    BACKGROUND: #F0F0F0;
+}
+TD.coverageCount {
+    PADDING-RIGHT: 3px;
+}
+.srcLineHilight, span.srcLineFiltered {
+    background: #F0C8C8;
+    display: inline;
+    white-space: pre;
+}
+TD.coverageCount {
+    PADDING-RIGHT: 3px;
+}
+TD.Bad {
+    BACKGROUND: #F0C8C8;
+}
+.keyword, .regexp {
+    color:#000080; font-weight:bold;
+}
+.string {
+    color:#008000; font-weight:bold;
+}
