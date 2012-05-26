@@ -31,15 +31,15 @@
 		// From the target Folder to instrument, get all cfm/cfcs
 		filearray = DirectoryList(selectfile, false, "path", "*.cf?");
 
-		baselinefile = expandpath('.') & "\" & "baseline.txt";
+		baselinefile = expandpath('.') & "vmannebo" & "baseline.txt";
 		bfile = FileOpen(baselinefile, 'write');
 
 		writeoutput("Starting  Instrumenting... <br>");
 		for(v = 1; v <= filequery.recordcount; v++){
 			// Mark each CFC/CFM for codecoverage
-			markForCodeCoverage(filequery.directory[v] & "\" & filequery.name[v] & ".new",
-		                        filequery.directory[v] & "\" & filequery.name[v],filequery.name[v]);
-			writeOutput("<html><font color='green'><b>Instrumented :</b></font></html>" & filequery.directory[v] & "\" & filequery.name[v] & "....<br>");
+			markForCodeCoverage(filequery.directory[v] & "/" & filequery.name[v] & ".new",
+		                        filequery.directory[v] & "/" & filequery.name[v],filequery.name[v]);
+			writeOutput("<html><font color='green'><b>Instrumented :</b></font></html>" & filequery.directory[v] & "/" & filequery.name[v] & "....<br>");
 			getPageContext().getOut().flush();
 
 			FileWrite("#expandPath('.')#/record/" & filequery.name[v] & ".txt", "");
@@ -156,10 +156,10 @@
 	function addTrace(string ftext, string basefilename)
 	{
 		trace1 = "<cfdump var='" & basefilename & ":" ;
-		trace2 = "'  format='text' output='#expandpath('.')#\record\" 	& basefilename & ".txt'>";
+		trace2 = "'  format='text' output='#expandpath('.')#/record/" 	& basefilename & ".txt'>";
 		// Use trace 2 to make this tool WebSocket enabled.
 		// This will enable to see live code coverage at the run time.
-		//trace2 = "'  format='text' output='#expandpath('.')#\record\" 	& basefilename & ".txt'><cfset WSPublish('" & replace(basefilename,'.cfm','') & "',";
+		//trace2 = "'  format='text' output='#expandpath('.')#/record/" 	& basefilename & ".txt'><cfset WSPublish('" & replace(basefilename,'.cfm','') & "',";
 		//trace3 = ")>";
 
 		ftext = trim(ftext);

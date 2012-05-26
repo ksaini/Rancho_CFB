@@ -7,29 +7,29 @@
 	This file shows report containing line coverage for an individual file
 ------>
 <cfif isDefined("filename")>
-	<cfset baselinecodebase = reverse(right(reverse(file_path),len(file_path)-findnocase("\",reverse(file_path)))) & '_bak'>
+	<cfset baselinecodebase = reverse(right(reverse(file_path),len(file_path)-findnocase("/",reverse(file_path)))) & '_bak'>
 	<cfset dir = DirectoryList(baselinecodebase,true,"query","*.cf?")>
-	
+
 	<cfquery dbtype="query" name="file_name">
 	  SELECT directory,name
 	  FROM dir where dir.name = '#filename#'
 	</cfquery>
-	
+
 	<cfscript>
 	 color="black";
 	 Variables.a = Arraynew(1);
 	 str ="";
-	
+
 	 Variables.i=1;
 	 // Open instrumented file
 	 instrumented_file = FileOpen(file_path, "read");
 	 // Open baseline file
 	 baseline_file = FileOpen(file_name.directory & "/" & file_name.name, "read");
-	
+
 	 //Open un-executed file
-	 codecoveragedir = DirectoryList(#expandpath('.')# & "\unexecuted",true,"query","*.txt");
-	 unreadline = FileOpen(expandpath('.') & "\unexecuted\" & filename & ".txt", "read");
-	
+	 codecoveragedir = DirectoryList(#expandpath('.')# & "/unexecuted",true,"query","*.txt");
+	 unreadline = FileOpen(expandpath('.') & "/unexecuted/" & filename & ".txt", "read");
+
 	 // Get all unexecuted LOC of file in an struct
 	 exe = structnew();
 	 try{
@@ -41,12 +41,12 @@
 		}
 		StructSort(exe,"numeric");
 		FileClose(unreadline);
-	
+
 	// Now loop through Instrumented file , for any line not there in exe struct imples
 	// LOC not covered add a comment <!---$$--> there to mark that Line as unexecuted
 	// First take a backup of instrumented file
 		FileMove(instrumented_file.path,expandpath('.') & "/temp.txt");
-	
+
 		//open this back up file in write mode
 		instrumented_file_backup = FileOpen(expandpath('.') & "/temp.txt", "write");
 	    counter =0;
@@ -61,7 +61,7 @@
 				// @@ ==> Line covered
 				// **==> Comment
 				// Nothing ==> non CF/Not to be covered code
-	
+
 					if(structkeyexists(exe,linecount)){
 						str = "<!---$$--->" & x;
 						FileWriteLine(instrumented_file_backup,str);
@@ -78,7 +78,7 @@
 		// Now close instrumented_file and instrumented_file_backup
 		FileClose(instrumented_file);
 		FileClose(instrumented_file_backup);
-	
+
 		// We have baseline file already open, reopen backup instrumented file 'instrumented_file_backup'
 		// Go through baseline file if for any line in baseline there is <!---$$--> in backup file==> line not executed
 		// Mark that line in red
@@ -93,7 +93,7 @@
 			if(len(original)){
 				original2 = right(original,len(original) - findnocase(tag,original)- len(tag)+1);
 			}
-	
+
 			writeoutput('<table cellspacing="0" cellpadding="0">');
 			// $$ ==> line unecxecuted
 			// @@ ==> Line covered
@@ -104,7 +104,7 @@
 				writeoutput("<td class='coverageCount Bad ' width=40>&nbsp;&nbsp;</td>");
 				writeoutput("<td class='  srcCell'><span class='spacer' ></span>");writeoutput('<span class="srcLine">');
 				writeoutput("<span class='srcLineHilight'>");
-	
+
 				if(len(tag) && len(original1)){
 					writeOutput(HTMLEditFormat(original1));
 					writeoutput('<span class="keyword">');
@@ -129,7 +129,7 @@
 					writeoutput('<span class="keyword">');
 					writeOutput(HTMLEditFormat(replace(tag,'<',"")));
 					writeOutput("</span>");
-	
+
 				}
 				writeOutput(HTMLEditFormat(original2));
 			}else{
@@ -143,7 +143,7 @@
 			writeOutput("</span>");writeoutput("</td>");
 			writeoutput("</tr>");
 		}
-	
+
 		}catch(exception e){}
 		finally{
 			FileClose(instrumented_file);
